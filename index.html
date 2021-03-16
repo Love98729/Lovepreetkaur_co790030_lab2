@@ -1,0 +1,100 @@
+<html>
+	<font size="8" color="green">Final test lab</font><br><br>
+  <div id="a1">
+    Number of rows: <input type="text" id="t1" /><br><br>
+  	Number of cols: <input type="text" id="t2" /><br><br>
+  </div>
+
+
+	<button id="b1" onclick="generateTable()">add table</button><br><br>
+
+	<button id="b2" onclick="addColumn()">Add Column</button>
+
+	<button id="b3" onclick="addRow()">Add Row</button>
+	<body>
+
+
+	<script >
+
+ function generateTable(){
+	var r=document.getElementById("t1").value;
+		var w=document.getElementById("t2").value;
+
+  var body = document.getElementsByTagName("body")[0];
+
+  // creates a <table> element and a <tbody> element
+  var tbl = document.createElement("table");
+  var tblBody = document.createElement("tbody");
+
+  // creating all cells
+  for (var i = 0; i < r; i++) {
+    // creates a table row
+    var row = document.createElement("tr");
+    //row.setAttribute('id',String(i));
+    for (var j = 0; j < w; j++) {
+      // Create a <td> element and a text node, make the text
+      // node the contents of the <td>, and put the <td> at
+      // the end of the table row
+      var cell = document.createElement("td");
+      var cellText = document.createTextNode("cell in row "+i+", column "+j);
+      cell.appendChild(cellText);
+      row.appendChild(cell);
+    }
+
+    // add the row to the end of the table body
+    tblBody.appendChild(row);
+  }
+
+  // put the <tbody> in the <table>
+  tbl.appendChild(tblBody);
+  // appends <table> into <body>
+  body.appendChild(tbl);
+  // sets the border attribute of tbl to 2;
+  tbl.setAttribute("border", "2");
+
+  document.getElementById("a1").style.visibility = "hidden";
+  document.getElementById("b1").style.visibility = "hidden";
+
+}
+
+ function addRow()
+ {
+    document.getElementsByTagName("table")[0].setAttribute("id", "table1");
+
+    var table2= document.getElementById("table1");
+
+    var i=table2.rows.length
+    var row = table2.insertRow(i);
+    for(var j=0;j<table2.rows[0].cells.length;j++)
+    {
+
+    var cell1 = row.insertCell(j);
+
+    // Add some text to the new cells:
+    cell1.innerHTML = "cell in row "+i+", column "+j;
+    }
+}
+
+function addColumn()
+ {
+    document.getElementsByTagName("table")[0].setAttribute("id", "table1");
+
+    var table2= document.getElementById("table1");
+
+    var i=table2.rows.length;
+    var col=table2.rows[0].cells.length;
+    //console.log(col);
+    for(var j=0;j<i;j++)
+    {
+
+      var cell1=table2.rows[j].insertCell(table2.rows[j].cells.length); 
+
+    // Add some text to the new cells:
+     cell1.innerHTML = "cell in row "+j+", column "+ col;
+    }
+}
+
+	</script>
+</body>
+
+</html>
